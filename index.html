@@ -7,78 +7,25 @@
 	</head>
 	<body>
 	
-		<!-- Text-->
-		<div id="info">ITC Digital Store</div>
-		
-		<!-- JavaScript-->
-		<script src="js/three.js"></script>	
-		<script src="js/OrbitControls.js"></script>		
-		<script type="module" src="js/GLTFLoader.js"></script>		
-		<script type="module">
-		import { GLTFLoader } from './js/GLTFLoader.js';
-		//Creating new 3D scene
-		const scene = new THREE.Scene();
-		scene.background = new THREE.Color(0xefefef);
-		
-		//Set Camera
-		const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-		//Set Renderer
-		const renderer = new THREE.WebGLRenderer( {alpha:true, antialias:true} );
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		document.body.appendChild( renderer.domElement );			
-
-		//Set Controls
-		const controls = new THREE.OrbitControls( camera, renderer.domElement );
-		camera.position.set( 0, 0, 3.5);
-		controls.update();
-		
-		//Set Light
-		const AmbientLight = new THREE.AmbientLight( 0x404040 ); // soft white light
-		scene.add( AmbientLight );
-		const PointLight = new THREE.PointLight( 0x404040, 3.5, 100 );
-		PointLight.position.set( 0, 2, 5 );
-		scene.add( PointLight );
-
-		//Draw a cube
-		const geometry = new THREE.BoxGeometry(1,1,1);
-		const material = new THREE.MeshPhysicalMaterial();
-		const cube = new THREE.Mesh( geometry, material );
-		scene.add( cube );
-		
-		//Load 3D Objects
-		const loader = new THREE.GLTFLoader();
-		var coat;
-		loader.load(
-			"obj/sheepskin_coat/scene.gltf",
-			function (gltf) 
-				{
-				coat = gltf.scene;
-				scene.add(glft.scene);
-				}
-			);
-
-		//Create animate loop to draw the scene every time the screen is refreshed-->
-		const animate = function () {
-			//Rendering the scene
-			controls.update();
-			renderer.render( scene, camera );
-			requestAnimationFrame( animate );
-		};
-		
-		//Render scene
-		animate();
-			
-		//Update on resize window
-		window.addEventListener( 'resize', onWindowResize, false );
-
-		function onWindowResize(){
-
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		};
-		
-		</script>
+	<style>
+	#exampleList {
+		position: absolute;
+		top: 30%;
+		width: 100%;
+		text-align: center;
+		color:#0e0e0e;
+		font-family: Century Gothic;
+		font-size: 1.5em;
+		}
+	</style>
+	
+	<!-- Text-->
+	<div id="info">ITC Digital Store</div>
+	<div id="exampleList">
+	<p> List of example webpages </p>
+	<a href="Cube.html">Cube</a><br>
+	<a href="GLTFLoader.html">GLTFLoader</a><br>
+	</div>
+ 		
 	</body>
 </html>
