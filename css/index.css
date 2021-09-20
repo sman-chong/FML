@@ -20,6 +20,30 @@ body {
   }
 
 
+/* unvisited link */
+a:link {
+	color: #191919;
+	text-decoration: none;
+  }
+  
+  /* visited link */
+  a:visited {
+	color: #191919;
+	text-decoration: none;
+  }
+  
+  /* mouse over link */
+  a:hover {
+	color: gold;
+	text-decoration: none;
+  }
+  
+  /* selected link */
+  a:active {
+	color: orange;
+	text-decoration: none;
+  }
+
 /* Text */
 #info {
 	position: absolute;
@@ -28,11 +52,6 @@ body {
     transform: translate(-50%,-50%); /* Move it halfway back(x,y) */
 	width: auto;
 }
-
-#info:hover {
-	color:#590C0C;
-  }
-
 
 h1 {
 	text-align: center;

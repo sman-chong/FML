@@ -7,8 +7,13 @@
 	</head>
 	<body>
 	
-		<!-- Text-->
-		<div id="info">ITC Digital Store</div>
+		<!-- Main text-->
+		<div id="info">
+			<h1>ITC Digital Store</h1>
+			<h2><span class="rd1">ZOOM:</span> Scroll <span class="rd1">| ORBIT:</span> Light click + Move <span class="rd1">| PAN:</span> Right click + Move</h2>
+		</div>
+
+		<!-- JavaScript-->
 		<script src="js/three.js"></script>	
 		<script src="js/OrbitControls.js"></script>	
 		<script src="js/GLTFLoader.js"></script>	
@@ -42,6 +47,8 @@
 		const geometry = new THREE.BoxGeometry(1,1,1);
 		const material = new THREE.MeshPhysicalMaterial( { color: 0x980000 } );
 		const cube = new THREE.Mesh( geometry, material );
+		cube.position.set( 0, 0, 0);
+		cube.rotation.set( 5, 5, 5);
 		scene.add( cube );
 		
 		camera.position.z = 5;
