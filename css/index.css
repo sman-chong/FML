@@ -1,0 +1,82 @@
+html,
+body {
+   margin:0;
+   padding:0;
+   width:100%;
+   height:100%;
+   background: #ffffff;
+   font-family: Century Gothic, 微軟正黑體;
+}
+
+/*Text Selection Color */
+::-moz-selection { /* Code for Firefox */
+	color: goldenrod;
+	background: #191919;
+  }
+  
+  ::selection {
+	color: goldenrod;
+	background: #191919;
+  }
+
+
+/* unvisited link */
+a:link {
+	color: #191919;
+	text-decoration: none;
+  }
+  
+  /* visited link */
+  a:visited {
+	color: #191919;
+	text-decoration: none;
+  }
+  
+  /* mouse over link */
+  a:hover {
+	color: gold;
+	text-decoration: none;
+  }
+  
+  /* selected link */
+  a:active {
+	color: orange;
+	text-decoration: none;
+  }
+
+/* Text */
+#info {
+	position: absolute;
+	top: 80%; /* Position Y*/
+    left: 50%; /* Position X*/
+    transform: translate(-50%,-50%); /* Move it halfway back(x,y) */
+	width: auto;
+}
+
+h1 {
+	text-align: center;
+	text-transform: uppercase;
+	line-height: 1em;
+	color:#0e0e0e;
+	font-family: Century Gothic;
+	font-size: 5em;
+	font-weight: bold;
+	word-spacing: 1px;
+	margin-bottom: 15px;
+	border: 5px solid #0e0e0e;
+    padding: .2em;
+}
+
+h2 {
+	text-align: center;
+	text-transform: capitalize;
+	color:#590C0C;
+	font-family: verdana;
+	font-size: 1em;
+	font-weight: normal;
+}
+
+.rd1 {
+	color: #0e0e0e;
+	text-transform: uppercase;
+  }
