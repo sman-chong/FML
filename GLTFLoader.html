@@ -85,10 +85,6 @@
 			requestAnimationFrame( animate );
 			renderer.render( scene, camera );
 			controls.update();
-			//Animating the 3D object
-			coat.rotation.y += 0.001;
-			angle.innerHTML = THREE.Math.radToDeg(coat.rotation.y) % 360;
-			coat.rotateOnAxis(axis, 0.01);
 		};
 
 		//Render scene

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ITC Digital Store</title>
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+	
+		<!-- Main text-->
+		<div id="info">
+			<h1 id="title">ITC Digital Store</h1>
+			<h2 id="manual"><span class="rd1">ZOOM:</span> Scroll <span class="rd1">| ORBIT:</span> Light click + Move <span class="rd1">| PAN:</span> Right click + Move</h2>
+		</div>
+
+		<!-- JavaScript-->
+		<script src="js/three.js"></script>	
+		<script src="js/OrbitControls.js"></script>	
+		<script src="js/GLTFLoader.js"></script>	
+		<script type = "module">
+		import { Text } from 'https://unpkg.com/troika-three-text@0.41.1/dist/troika-three-text.esm.js?module';
+		
+		//Creating new 3D scene
+		const scene = new THREE.Scene();
+		scene.background = new THREE.Color(0xefefef);
+		
+		//Set Camera
+		const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+		//Set Renderer
+		const renderer = new THREE.WebGLRenderer( {alpha:true, antialias:true} );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );			
+
+		//Set Controls
+		const controls = new THREE.OrbitControls( camera, renderer.domElement );
+		camera.position.set( 0, 0, 5);
+		controls.update();
+		
+		//Set Light
+		const AmbientLight = new THREE.AmbientLight( 0x404040 ); // soft white light
+		scene.add( AmbientLight );
+		const PointLight = new THREE.PointLight( 0x404040, 3, 100 );
+		PointLight.position.set( 0, 5, 10 );
+		scene.add( PointLight );
+
+		//Draw a cube
+		const geometry = new THREE.BoxGeometry(1,1,1);
+		const material = new THREE.MeshPhysicalMaterial( { color: 0x980000 } );
+		const cube = new THREE.Mesh( geometry, material );
+		cube.position.set( 0, 0, 0);
+		cube.rotation.set( 0, 0, 0);
+		cube.name = "red cube";
+		scene.add( cube );
+		
+		//Draw a cube
+		const geometry2 = new THREE.BoxGeometry(1,1,1);
+		const material2 = new THREE.MeshPhysicalMaterial( { color: 0x335656 } );
+		const cube2 = new THREE.Mesh( geometry2, material2 );
+		cube2.position.set( 3, 1, -2);
+		cube2.rotation.set( 3, Math.PI / 3, 0);
+		cube2.name = "green cube";
+		scene.add( cube2 );
+
+		// Create Text:
+		var myText = new Text ();
+		myText.text = '';
+		myText.fontSize = 0.2;
+		myText.color = 0x000f00;
+		myText.material.opacity = 0;
+		myText.position.set( 0, 0, 0);
+		myText.textAlign = "center";
+		myText.sync();
+		scene.add(myText);
+	
+		//Mouse click event
+		var raycaster = new THREE.Raycaster();
+		var mouse = new THREE.Vector2();
+
+		function onMouseMove( event ) {
+
+			// calculate mouse position in normalized device coordinates
+			// (-1 to +1) for both components
+
+			mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+			mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+		}
+
+		//Select object
+		const hoverObj = function () {
+			// update the picking ray with the camera and mouse position
+			raycaster.setFromCamera( mouse, camera );
+			
+			// calculate objects intersecting the picking ray
+			var intersects = raycaster.intersectObjects(scene.children);
+
+			// If objects intersect the picking ray
+			if (intersects.length > 0) {
+					document.getElementById("title").style.visibility = "hidden";
+					document.getElementById("title").style.opacity = 0;
+					document.getElementById("title").style.transition = "visibility 0s 0.5s, opacity 0.5s linear";
+					document.getElementById("manual").style.opacity = 0;
+					document.getElementById("manual").style.transition = "opacity 0.5s linear";
+				} else {
+					document.getElementById("title").style.visibility = "visible";
+					document.getElementById("title").style.opacity = 1;
+					document.getElementById("title").style.transition = "opacity 0.5s linear";
+					document.getElementById("manual").style.opacity = 1;
+					document.getElementById("manual").style.transition = "opacity 0.5s linear";
+					}
+
+			// Action to the intersecting object
+			for (let i = 0; i < intersects.length; i++){
+				// Show label
+				myText.material.opacity = 1;
+				myText.position.x = intersects[ i ].object.position.x + 0.7;
+				myText.position.y = intersects[ i ].object.position.y + 0.7;
+				myText.position.z = intersects[ i ].object.position.z;
+				myText.text = intersects[ i ].object.name;
+				// Add animation
+				intersects[ i ].object.rotation.y += 0.01;
+				intersects[ i ].object.rotation.y += 0.01;
+			};
+
+		};
+
+
+		window.addEventListener( 'mousemove', onMouseMove, false );
+
+
+		//Create animate loop to draw the scene every time the screen is refreshed-->
+		const animate = function () {
+			//Rendering the scene
+			hoverObj(); 
+			controls.update();
+			renderer.render( scene, camera );
+			requestAnimationFrame( animate );
+		};
+		
+		//Render scene
+		animate();
+			
+		//Update on resize window
+		window.addEventListener( 'resize', onWindowResize, false );
+
+		function onWindowResize(){
+
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+		};
+
+
+		</script>
+	</body>
+</html>

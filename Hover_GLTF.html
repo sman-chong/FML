@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ITC Digital Store</title>
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+	
+		<!-- Main text-->
+		<div id="info">
+			<h1 id="title">ITC Digital Store</h1>
+			<h2 id="manual"><span class="rd1">ZOOM:</span> Scroll <span class="rd1">| ORBIT:</span> Light click + Move <span class="rd1">| PAN:</span> Right click + Move</h2>
+			<h2><span class="rd1">Hover to rotate object</span></h2>
+		
+		</div>
+
+		<!-- JavaScript-->
+		<script src="js/three.js"></script>	
+		<script src="js/OrbitControls.js"></script>		
+		<script type="module" src="js/GLTFLoader.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>	
+
+		<script type="module">
+		import { GLTFLoader } from './js/GLTFLoader.js';
+		//Creating new 3D scene
+		const scene = new THREE.Scene();
+		scene.background = new THREE.Color(0xefefef);
+		scene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );
+		
+		//Set Camera
+		const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+		//Set Renderer
+		const renderer = new THREE.WebGLRenderer( {alpha:true, antialias:true} );
+		renderer.shadowMap.enabled = true;
+		renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );			
+
+		//Set Controls
+		const controls = new THREE.OrbitControls( camera, renderer.domElement );
+		camera.position.set( 0, 0, 55);
+		controls.update();
+		
+		//Set Light
+		const AmbientLight = new THREE.AmbientLight( 0x9EB1BA ); // This light globally illuminates all objects in the scene equally.
+		scene.add( AmbientLight );
+		const HemisphereLight = new THREE.HemisphereLight( 0xFFFFFF, 0x080820, 1 ); //A light source positioned directly above the scene, with color fading from the sky color to the ground color.
+		scene.add( HemisphereLight );
+		
+		const PointLight = new THREE.PointLight( 0xA0C4D4, 5, 100 );
+		PointLight.position.set( 15, 15, 125 );
+		scene.add( PointLight );
+		const PointLight2 = new THREE.PointLight( 0xA0C4D4, 5, 100 );
+		PointLight2.position.set( -15, -15, -125 );
+		scene.add( PointLight2 );
+
+		//Draw a cube
+		const geometry = new THREE.BoxGeometry(5,5,5);
+		const material = new THREE.MeshPhysicalMaterial( { color: 0x980000 } );
+		const cube = new THREE.Mesh( geometry, material );
+		cube.position.set( 20, 10, 0);
+		cube.rotation.set( 0, 0, 0);
+		scene.add( cube );
+		
+		//Load 3D Objects
+		const loader = new GLTFLoader();
+
+		var coat;
+		loader.load(
+			"obj/sheepskin_coat/scene.gltf",
+			function (gltf) 
+				{
+				coat = gltf.scene;
+				coat.scale.set(1,1,1);
+				coat.position.set( 0, 5, -10);
+				scene.add( coat );
+				}
+			);
+
+				
+		//Mouse click event
+		var raycaster = new THREE.Raycaster();
+		var mouse = new THREE.Vector2();
+
+		function onMouseMove( event ) {
+
+			// calculate mouse position in normalized device coordinates
+			// (-1 to +1) for both components
+
+			mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+			mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+		}
+
+		//Select object
+		const hoverObj = function () {
+			// update the picking ray with the camera and mouse position
+			raycaster.setFromCamera( mouse, camera );
+			
+			// calculate objects intersecting the picking ray
+			var intersects = raycaster.intersectObjects( scene.children , true);
+			// Action to the intersecting object
+			for (let i = 0; i < intersects.length; i++){ 
+				let current = intersects[ i ].object;
+				if (current.parent.parent !== null) { 
+					current.parent.rotation.y += 0.01;
+				} else {
+					current.rotation.y += 0.05;
+					current.rotation.x += 0.05;
+					}
+				}
+
+			
+			// If objects intersect the picking ray
+			if (intersects.length > 0) {
+					document.getElementById("title").style.visibility = "hidden";
+					document.getElementById("title").style.opacity = 0;
+					document.getElementById("title").style.transition = "visibility 0s 0.5s, opacity 0.5s linear";
+					document.getElementById("manual").style.opacity = 0.3;
+					document.getElementById("manual").style.transition = "opacity 0.5s linear";
+				} else {
+					document.getElementById("title").style.visibility = "visible";
+					document.getElementById("title").style.opacity = 1;
+					document.getElementById("title").style.transition = "opacity 0.5s linear";
+					document.getElementById("manual").style.opacity = 1;
+					document.getElementById("manual").style.transition = "opacity 0.5s linear";
+					}
+					
+		};
+
+		window.addEventListener( 'mousemove', onMouseMove, false );
+
+
+		//Create animate loop to draw the scene every time the screen is refreshed-->
+		const animate = function () {
+			//Rendering the scene
+			hoverObj(); 
+			controls.update();
+			renderer.render( scene, camera );
+			requestAnimationFrame( animate );
+		};
+		
+		//Render scene
+		animate();
+			
+		//Update on resize window
+		window.addEventListener( 'resize', onWindowResize, false );
+
+		function onWindowResize(){
+
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+		};
+
+
+		</script>
+	</body>
+</html>

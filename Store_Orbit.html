@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Fashion Metaverse Lab</title>
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<body>
+		<!-- Main text-->
+		<div id="info">
+			<h1>Fashion Metaverse Lab</h1>
+			<h2><span class="rd1">ZOOM:</span> Scroll <span class="rd1">| MOVE:</span> ←↑↓→ / WASD <span class="rd1">| LOOK:</span> Mouse</h2>
+		</div>
+		
+		<!-- menu-->
+		<div id="menu">
+			<svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve" onclick="openNav()">
+				<g>
+					<rect y="16" class="st0" width="86.398" height="80"></rect>
+					<rect x="166.398" y="16" class="st0" width="345.602" height="80"></rect>
+					<rect y="216" class="st0" width="86.398" height="80"></rect>
+					<rect x="166.398" y="216" class="st0" width="345.602" height="80"></rect>
+					<rect y="416" class="st0" width="86.398" height="80"></rect>
+					<rect x="166.398" y="416" class="st0" width="345.602" height="80"></rect>
+				</g>
+			</svg>
+		</div>
+
+		<div id="myNav" class="overlay">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<div class="overlay-content">
+			  <a href="#about" class="myNav_1" onclick="openMyNav1()">About</a>
+			  <a href="#guide" class="myNav_2" onclick="openMyNav2()">Instructions</a>
+			  <a href="#setting" class="myNav_3" onclick="openMyNav3()">Setting</a>
+			  <a href="#contact" class="myNav_4" onclick="openMyNav4()">Contact</a>
+			</div>
+		  </div>
+
+		<!-- Open & Close Panel -->
+		<script>
+			function openNav() {
+				document.getElementById("myNav").style.width = "15%";
+			}
+			
+			function closeNav() {
+				closeContent()
+				document.getElementById("myNav").style.width = "0%"; 
+			}
+
+			function openMyNav1() {
+				document.getElementById("MyNav1").style.width = "85%";
+				document.getElementById("MyNav2").style.width = "0%";
+				document.getElementById("MyNav3").style.width = "0%";
+				document.getElementById("MyNav4").style.width = "0%";
+			}
+			function openMyNav2() {
+				document.getElementById("MyNav1").style.width = "0%";
+				document.getElementById("MyNav2").style.width = "85%";
+				document.getElementById("MyNav3").style.width = "0%";
+				document.getElementById("MyNav4").style.width = "0%";
+			}
+			function openMyNav3() {
+				document.getElementById("MyNav1").style.width = "0%";
+				document.getElementById("MyNav2").style.width = "0%";
+				document.getElementById("MyNav3").style.width = "85%";
+				document.getElementById("MyNav4").style.width = "0%";
+			}
+			function openMyNav4() {
+				document.getElementById("MyNav1").style.width = "0%";
+				document.getElementById("MyNav2").style.width = "0%";
+				document.getElementById("MyNav3").style.width = "0%";
+				document.getElementById("MyNav4").style.width = "85%";
+			}
+			function closeContent() {
+				document.getElementById("myNav").style.transitionDelay="0.5s";
+				document.getElementById("MyNav1").style.width = "0%";
+				document.getElementById("MyNav2").style.width = "0%";
+				document.getElementById("MyNav3").style.width = "0%";
+				document.getElementById("MyNav4").style.width = "0%";
+			}
+			document.addEventListener('keydown', function(event){
+				if(event.key === "Escape"){
+					closeNav()
+				}
+			})
+			
+		</script>
+
+		<!-- about -->
+		<div id="MyNav1" class="overlay_about">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeContent()"><b>&lharu;</b></a>
+			<div id="about" class="text">
+				<h3>ABOUT</h3>
+				<p>This is a fashion metaverse lab.</p>
+				<p></p>
+				<h3>Credit</h3>
+				<p>This work is based on:</p>
+				<p>
+					<li class = "hangingindent"><a href="https://sketchfab.com/3d-models/clothing-store-507070cebf784389bfe8a47a99dbd0ca">"Clothing Store"</a> by <a href="https://sketchfab.com/lizhiqiang89">lizhiqiang</a> (<a href="http://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a>)</li>
+					<li class = "hangingindent"><a href="https://sketchfab.com/3d-models/random-ass-rigged-base-675b5bb60cfe47248cb986b13187bcb7">"random ass rigged Base"</a> by <a href="https://sketchfab.com/Olumide">Midé</a> (<a href="http://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a>)</li>
+				</p>
+			</div>
+		</div>
+		
+		<!-- instruction -->
+		<div id="MyNav2" class="overlay_about">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeContent()"><b>&lharu;</b></a>
+			<div id="guide" class="text">
+				<h3>INSTRUCTION</h3>
+				<p><b>ZOOM:</b> Scroll | <b>ORBIT:</b> Light click + Move | <b>PAN:</b> Right click + Move</p>
+				<p><b>CLOSE:</b> Esc</p>
+			</div>
+		</div>
+
+		<!-- setting -->
+		<div id="MyNav3" class="overlay_about">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeContent()"><b>&lharu;</b></a>
+			<div id="setting" class="text">
+				<h3>SETTING</h3>
+				<p>...</p>
+			</div>
+		</div>
+
+		<!-- contact -->
+		<div id="MyNav4" class="overlay_about">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeContent()"><b>&lharu;</b></a>
+			<div id="contact" class="text">
+				<h3>CONTACT</h3>
+				<p>...</p>
+			</div>
+		</div>
+		
+		<!-- JavaScript-->
+		<script src="js/three.js"></script>	
+		<script src="js/OrbitControls.js"></script>	
+		<script type="module" src="js/GLTFLoader.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>		
+		
+		<script type="module">
+		import { GLTFLoader } from './js/GLTFLoader.js';
+
+		//Creating new 3D scene
+		const scene = new THREE.Scene();
+		scene.background = new THREE.Color(0xefefef);
+		scene.fog = new THREE.FogExp2( 0xcccccc, 0.0001 );
+
+		//Set Camera
+		const camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
+
+		//Set Renderer
+		const renderer = new THREE.WebGLRenderer( {alpha:true, antialias:true} );
+		renderer.shadowMap.enabled = true;
+		renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );			
+
+		//Set Controls
+		const controls = new THREE.OrbitControls( camera, renderer.domElement );
+		camera.position.set( 10, 250, 1150);
+		controls.update();
+		
+
+		//Set Light
+		const AmbientLight = new THREE.AmbientLight( 0x9EB1BA ); // This light globally illuminates all objects in the scene equally.
+		scene.add( AmbientLight );
+		const HemisphereLight = new THREE.HemisphereLight( 0xFFFFFF, 0x080820, 1 ); //A light source positioned directly above the scene, with color fading from the sky color to the ground color.
+		scene.add( HemisphereLight );
+		
+		const PointLight = new THREE.PointLight( 0xA0C4D4, 5, 100 );
+		PointLight.position.set( 0, 500, 125 );
+		scene.add( PointLight );
+		const PointLight2 = new THREE.PointLight( 0xA0C4D4, 5, 100 );
+		PointLight2.position.set( 0, 500, -125 );
+		scene.add( PointLight2 );
+		
+		//Load 3D Objects
+		const loader = new GLTFLoader();
+
+		//store
+		var store;
+		loader.load(
+			"obj/clothing_store/scene.gltf",
+			function (gltf) 
+				{
+				store = gltf.scene;
+				store.scale.set(1,1,1);
+				store.position.set( 0, 0, 0);
+				scene.add( store );
+				}
+			);
+
+		//avatar
+			var avatar;
+		loader.load(
+			"obj/random_ass_rigged_base/scene.gltf",
+			function (gltf) 
+				{
+				avatar = gltf.scene;
+				avatar.scale.set(65,65,65);
+				avatar.position.set( 0, 0, 700);
+				scene.add( avatar );
+				}
+			);
+
+		//Update on resize window
+		window.addEventListener( 'resize', onWindowResize, false );
+
+		function onWindowResize(){
+
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		};
+		
+
+		//Create animate loop to draw the scene every time the screen is refreshed-->
+		const animate = function () {
+
+			//Rendering the scene
+			requestAnimationFrame( animate );
+			renderer.render( scene, camera );
+			controls.update();
+		};
+
+		//Render scene
+		animate();
+
+		</script>
+
+	</body>
+</html>
