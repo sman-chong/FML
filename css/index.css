@@ -6,6 +6,7 @@ body {
    height:100%;
    background: #ffffff;
    font-family: Century Gothic, 微軟正黑體;
+   overflow: hidden
 }
 
 /*Text Selection Color */
@@ -34,8 +35,9 @@ a:link {
   
   /* mouse over link */
   a:hover {
-	color: gold;
+	color: goldenrod;
 	text-decoration: none;
+	font-weight: bold;
   }
   
   /* selected link */
@@ -59,7 +61,7 @@ h1 {
 	line-height: 1em;
 	color:#0e0e0e;
 	font-family: Century Gothic;
-	font-size: 5em;
+	font-size: calc(4em + 0.5vw);
 	font-weight: bold;
 	word-spacing: 1px;
 	margin-bottom: 15px;
@@ -76,7 +78,187 @@ h2 {
 	font-weight: normal;
 }
 
+h3 {
+	text-transform: uppercase;
+	color:#0e0e0e;
+	font-family: Century Gothic;
+	font-size: calc(3em + 1vw);
+	font-weight: bold;
+	word-spacing: 1px;
+	margin-bottom: 15px;
+}
+
 .rd1 {
 	color: #0e0e0e;
 	text-transform: uppercase;
+  }
+ 
+.hangingindent {
+	padding-left: 20px ;
+	text-indent: -20px ;
+	margin-left: 20px;
+  }
+
+/* Menu */
+#menu {
+	position: absolute;
+	top: 25px; /* Position Y*/
+    left: 25px; /* Position X*/
+	width: auto;
+}
+
+/* SideMenu */
+svg {
+	width: 55px;
+	height: 55px;
+	opacity: 1;
+	fill: rgb(50, 50, 50);
+	}
+svg:hover {
+	fill: rgb(200,200,200);
+	transition: 0.05s;
+	}
+svg:active {
+	fill: white;
+	transform: scale(0.9);
+	transition: 0.05s;
+	}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  display: inline-block;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.overlay .overlay-icon{
+	display: none;
+}
+
+@media only screen and (max-width: 950px) {
+	h1 {
+		font-size: 5.5vw;
+	}
+	h2 {
+		display: none!important;
+	}
+	.overlay-content {
+		display: none!important;
+	}
+	.overlay .closebtn{
+		display: none!important;
+	}
+	.overlay .overlay-icon{
+		display: inline-block;
+		position: relative;
+		text-align: center;
+		width:100%;
+		padding: 100% 0%;
+	  }
+	.overlay-icon svg{
+		width: 35px;
+		height: 35px;
+		fill: #818181;
+	}
+	.overlay-icon svg:hover{
+		fill: rgb(230,230,230);
+	}
+
+	.overlay-icon svg:active{
+		fill: white;
+		transform: scale(0.9);
+		transform: rotate(360deg);
+		transition: 0.75s;
+		}
+	
+}
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: calc(8px + 1.25vw);
+  color: #818181;
+  display: block;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay a:active {
+	color: #f1f1f1;
+  }
+
+.overlay .closebtn, .overlay_about .closebtn {
+  position: absolute;
+  top: 0%;
+  right: 5%;
+  font-size: calc(35px + 3vw);
+}
+
+.overlay .closebtn:active {
+	transform: rotate(3.142rad);
+	color: #f1f1f1;
+  }
+
+.myNav_1:after,.myNav_2:after,.myNav_3:after,.myNav_4:after {
+  content: '';
+  position: relative;
+  display: block;
+  width: 80%;
+  transform: scaleX(0);
+  height: 10px;
+  bottom: 0;
+  left: 10%;
+  background-color: goldenrod;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.myNav_1:focus:after, .myNav_2:focus:after, .myNav_3:focus:after, .myNav_4:focus:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+
+/* About */
+.overlay_about {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 15%;
+	background-color: rgba(225,225,225, 1);
+	overflow-x: hidden;
+	transition: 0.5s;
+	overflow-y: auto;
+  }
+
+  .text {
+	position: relative;
+	display: inline-block;
+	top: 5%;
+	width: 90%;
+	text-align: left;
+	scroll-margin-top: 5%;
+	scroll-margin-bottom: 5%;	
+	margin-left: 5%;	
+	margin-right: 5%;
+	transition: 0.5s;
   }
